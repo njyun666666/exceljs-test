@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button onclick="fromJson()">fromJson()</button>
+    <button onclick="exportExcel()">export</button>
+    <button onclick="exportExcel2()">export2</button>
+
+    <script src="exceljs/exceljs.min.js"></script>
+    <script src="FileSaver.js/FileSaver.min.js"></script>
+
+    <script>
+      let data = [
+        { Name: "Bill Clinton", Index: 42000, Date: "2020-09-08T10:11:12" },
+        { Name: "GeorgeW Bush", Index: 43000, Date: "2020-09-08T13:11:12" },
+        { Name: "Barack Obama", Index: -44000, Date: "2020-09-08T14:11:12" },
+        { Name: "AAAAA", Index: -45000, Date: "2020-09-08T15:11:12" },
+      ];
+
+      let data2 = [
+        {
+          CaseID: 11111111,
+          AppID: "QQQQQQQ",
+          UID: "123456789",
+          PayAmountTotal: 0,
+          ServerID: null,
+          RoleID: null,
+          DeviceName: null,
+          QuestionTypeName: null,
+          DetailName: null,
+          Email: null,
+          Phone: null,
+          ReturnContent: null,
+          Image1: null,
+          Image2: null,
+          Image3: null,
+          QuestionDate: "2020-11-05T14:51:38",
+          CreateDate: "2020/11/05 14:51:34",
+          UpdateDate: null,
+          Editor: null,
+          Status: "Pending",
+          Owner: null,
+          NiceRank: 0,
+          MEMO: null,
+          UIDAmount: 1021617,
+          OpenIDAmount: 1665263.2795,
+          PMWorkTime: 0,
+          WorkTime: 1,
+        },
+        {
+          CaseID: 11111111,
+          AppID: "QQQQQQQ",
+          UID: "123456789",
+          PayAmountTotal: 0,
+          ServerID: null,
+          RoleID: null,
+          DeviceName: null,
+          QuestionTypeName: null,
+          DetailName: null,
+          Email: null,
+          Phone: null,
+          ReturnContent: null,
+          Image1: null,
+          Image2: null,
+          Image3: null,
+          QuestionDate: "2020-11-05T11:28:14",
+          CreateDate: "2020/11/05 11:28:11",
+          UpdateDate: null,
+          Editor: null,
+          Status: "Pending",
+          Owner: null,
+          NiceRank: 0,
+          MEMO: null,
+          UIDAmount: 61038.1502,
+          OpenIDAmount: 61038.1502,
+          PMWorkTime: 0,
+          WorkTime: 1,
+        },
+        {
+          CaseID: 11111111,
+          AppID: "QQQQQQQ",
+          UID: "123456789",
+          PayAmountTotal: 0,
+          ServerID: null,
+          RoleID: null,
+          DeviceName: null,
+          QuestionTypeName: null,
+          DetailName: null,
+          Email: null,
+          Phone: null,
+          ReturnContent: null,
+          Image1: null,
+          Image2: null,
+          Image3: null,
+          QuestionDate: "2020-11-05T08:01:41",
+          CreateDate: "2020/11/05 08:01:38",
+          UpdateDate: "2020-11-05T15:47:00.467",
+          Editor: null,
+          Status: "Pending",
+          Owner: "WWWWWWW",
+          NiceRank: 0,
+          MEMO: null,
+          UIDAmount: 1840,
+          OpenIDAmount: 1840,
+          PMWorkTime: 0,
+          WorkTime: 1,
+        },
+        {
+          CaseID: 11111111,
+          AppID: "QQQQQQQ",
+          UID: "123456789",
+          PayAmountTotal: 0,
+          ServerID: null,
+          RoleID: null,
+          DeviceName: null,
+          QuestionTypeName: null,
+          DetailName: null,
+          Email: null,
+          Phone: null,
+          ReturnContent: null,
+          Image1: null,
+          Image2: null,
+          Image3: null,
+          QuestionDate: "2020-11-04T18:58:08",
+          CreateDate: "2020/11/04 18:58:05",
+          UpdateDate: "2020-11-04T20:46:10.493",
+          Editor: null,
+          Status: "Pending",
+          Owner: null,
+          NiceRank: 0,
+          MEMO: null,
+          UIDAmount: 174389.9707,
+          OpenIDAmount: 174389.9707,
+          PMWorkTime: 0,
+          WorkTime: 2,
+        },
+        {
+          CaseID: 11111111,
+          AppID: "QQQQQQQ",
+          UID: "123456789",
+          PayAmountTotal: 0,
+          ServerID: null,
+          RoleID: null,
+          DeviceName: null,
+          QuestionTypeName: null,
+          DetailName: null,
+          Email: null,
+          Phone: null,
+          ReturnContent: null,
+          Image1: null,
+          Image2: null,
+          Image3: null,
+          QuestionDate: "2020-11-04T11:46:46",
+          CreateDate: "2020/11/04 11:46:43",
+          UpdateDate: "2020-11-05T15:37:22.543",
+          Editor: null,
+          Status: "Pending",
+          Owner: "WWWWWWW",
+          NiceRank: 0,
+          MEMO: null,
+          UIDAmount: 2213.91,
+          OpenIDAmount: 2213.91,
+          PMWorkTime: 0,
+          WorkTime: 2,
+        },
+        {
+          CaseID: 11111111,
+          AppID: "QQQQQQQ",
+          UID: "123456789",
+          PayAmountTotal: 0,
+          ServerID: null,
+          RoleID: null,
+          DeviceName: null,
+          QuestionTypeName: null,
+          DetailName: null,
+          Email: null,
+          Phone: null,
+          ReturnContent: null,
+          Image1: null,
+          Image2: null,
+          Image3: null,
+          QuestionDate: "2020-10-17T13:19:46",
+          CreateDate: "2020/10/17 13:19:44",
+          UpdateDate: "2020-10-26T11:58:41.57",
+          Editor: null,
+          Status: "Pending",
+          Owner: null,
+          NiceRank: 0,
+          MEMO: null,
+          UIDAmount: 618012.338,
+          OpenIDAmount: 618012.338,
+          PMWorkTime: 0,
+          WorkTime: 20,
+        },
+        {
+          CaseID: 11111111,
+          AppID: "QQQQQQQ",
+          UID: "123456789",
+          PayAmountTotal: 0,
+          ServerID: null,
+          RoleID: null,
+          DeviceName: null,
+          QuestionTypeName: null,
+          DetailName: null,
+          Email: null,
+          Phone: null,
+          ReturnContent: null,
+          Image1: null,
+          Image2: null,
+          Image3: null,
+          QuestionDate: "2020-10-17T13:09:31",
+          CreateDate: "2020/10/17 13:09:27",
+          UpdateDate: "2020-10-26T11:59:26.877",
+          Editor: null,
+          Status: "Pending",
+          Owner: null,
+          NiceRank: 0,
+          MEMO: null,
+          UIDAmount: 618012.338,
+          OpenIDAmount: 618012.338,
+          PMWorkTime: 0,
+          WorkTime: 20,
+        },
+      ];
+
+      function fromJson() {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Sheet1");
+
+        worksheet.columns = [
+          { header: "Name", key: "Name", width: 32 },
+          { header: "Index", key: "Index", width: 10 },
+          { header: "Date", key: "Date", width: 20 },
+        ];
+
+        worksheet.model = data;
+
+        // worksheet.addRows(data);
+
+        // export to file
+        workbook.xlsx.writeBuffer().then((buffer) => {
+          const fileType =
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+          const fileExtension = ".xlsx";
+          const blob = new Blob([buffer], { type: fileType });
+          saveAs(blob, "exceljs" + fileExtension);
+        });
+      }
+
+      function exportExcel2() {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Sheet1", {
+          properties: { tabColor: { argb: "FFC0000" } },
+        });
+
+        const fontStyle = {
+          // name: 'Times New Roman',
+          // family: 4,
+          // size: 16,
+          // color: { argb: 'FFFF0000' },
+          // underline: true,
+          // bold: true
+        };
+
+        worksheet.columns = [
+          { header: "CaseID", key: "CaseID", width: 10 },
+          { header: "UID", key: "UID", width: 10 },
+          { header: "AppID", key: "AppID", width: 10 },
+          {
+            header: "UIDAmount",
+            key: "UIDAmount",
+            width: 15,
+            style: { font: fontStyle, numFmt: "#,##0.00" },
+          },
+          {
+            header: "OpenIDAmount",
+            key: "OpenIDAmount",
+            width: 15,
+            style: { font: fontStyle, numFmt: "#,##0.00" },
+          },
+          {
+            header: "CreateDate",
+            key: "CreateDate",
+            width: 20,
+            style: { numFmt: "yyyy/m/d hh:mm:ss" },
+          },
+          {
+            header: "UpdateDate",
+            key: "UpdateDate",
+            width: 20,
+            style: { numFmt: "yyyy/m/d hh:mm:ss" },
+          },
+          { header: "Status", key: "Status", width: 10 },
+          { header: "WorkTime", key: "WorkTime", width: 20 },
+          { header: "PMWorkTime", key: "PMWorkTime", width: 20 },
+          { header: "Owner", key: "Owner", width: 10 },
+        ];
+
+        worksheet.addRows(data2);
+
+        worksheet.getColumn("A").alignment = { horizontal: "center" };
+        worksheet.getColumn("B").alignment = { horizontal: "center" };
+        worksheet.getColumn("C").alignment = { horizontal: "center" };
+        worksheet.getColumn("D").alignment = { horizontal: "right" };
+        worksheet.getColumn("E").alignment = { horizontal: "right" };
+        worksheet.getColumn("F").alignment = { horizontal: "center" };
+        worksheet.getColumn("G").alignment = { horizontal: "center" };
+        worksheet.getColumn("H").alignment = { horizontal: "center" };
+        worksheet.getColumn("I").alignment = { horizontal: "center" };
+        worksheet.getColumn("J").alignment = { horizontal: "center" };
+        worksheet.getColumn("K").alignment = { horizontal: "center" };
+
+        let noReply3DayFill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FFFF0000" },
+          bgColor: { argb: "00FFFF00" },
+        };
+
+        let noReply7DayFill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FFFF0000" },
+          bgColor: { argb: "00FFFF00" },
+        };
+
+        data2.forEach((x, index) => {
+          const rowNumber = index + 2;
+
+          if (x.WorkTime > 7) {
+            const row1 = worksheet.getRow(rowNumber);
+            row1.fill = noReply7DayFill;
+          } else if (x.WorkTime > 3) {
+            const row1 = worksheet.getRow(rowNumber);
+            row1.fill = noReply3DayFill;
+          }
+        });
+
+        // const dobCol = worksheet.getColumn('I');
+        // dobCol.eachCell(function (cell, rowNumber) {
+        //     console.log(cell);
+        //     console.log('rowNumber : ' + rowNumber + ' , ' + cell.value);
+
+        //     if (cell.value > 7) {
+
+        //         const row1 = worksheet.getRow(rowNumber);
+        //         row1.fill = noReply7DayFill;
+
+        //     } else if (cell.value > 3) {
+
+        //         const row1 = worksheet.getRow(rowNumber);
+        //         row1.fill = noReply3DayFill;
+        //     }
+
+        // });
+
+        // worksheet.eachRow(function (row, rowNumber) {
+        //     console.log(row);
+
+        // });
+
+        // export to file
+        workbook.xlsx.writeBuffer().then((buffer) => {
+          const fileType =
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+          const fileExtension = ".xlsx";
+          const fileName = "test_" + fileExtension;
+          const blob = new Blob([buffer], { type: fileType });
+          saveAs(blob, fileName);
+        });
+      }
+
+      function exportExcel() {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Sheet1", {
+          properties: { tabColor: { argb: "FFC0000" } },
+        });
+        const worksheet2 = workbook.addWorksheet("Sheet2", {
+          properties: { tabColor: { argb: "FFFF000" } },
+        });
+
+        const fontStyle = {
+          name: "Times New Roman",
+          family: 4,
+          size: 16,
+          color: { argb: "FFFF0000" },
+          underline: true,
+          bold: true,
+        };
+
+        worksheet.columns = [
+          {
+            header: "Name",
+            key: "Name",
+            width: 32,
+            style: { font: fontStyle },
+          },
+          { header: "Index", key: "Index", width: 10 },
+          {
+            header: "Date",
+            key: "Date",
+            width: 20,
+            style: { numFmt: "yyyy/MM/d HH:mm:ss" },
+          },
+        ];
+
+        const indexCol = worksheet.getColumn(2);
+        indexCol.numFmt = "#,##0.00;[Red]\-#,##0.00";
+
+        const row1 = worksheet.getRow(1);
+        row1.fill = {
+          type: "pattern",
+          pattern: "solid",
+          fgColor: { argb: "FFFFFF00" },
+          bgColor: { argb: "00FFFF00" },
+        };
+
+        worksheet.addRows(data);
+
+        worksheet.mergeCells("A6:B6");
+        const A6 = worksheet.getCell("A6");
+        A6.value = "merge A6:B6";
+        A6.border = {
+          top: { style: "thin" },
+          left: { style: "thin" },
+          bottom: { style: "thin" },
+          right: { style: "thin" },
+        };
+
+        worksheet.mergeCells("C6:C7");
+        const C6 = worksheet.getCell("C6");
+        C6.value = "merge C6:C7";
+        C6.border = {
+          top: { style: "thin" },
+          left: { style: "thin" },
+          bottom: { style: "thin" },
+          right: { style: "thin" },
+        };
+
+        // export to file
+        // workbook.xlsx.writeBuffer().then((buffer) => {
+        //     const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        //     const fileExtension = '.xlsx';
+        //     const blob = new Blob([buffer], { type: fileType });
+        //     saveAs(blob, 'exceljs' + fileExtension);
+        // });
+      }
+    </script>
+  </body>
+</html>

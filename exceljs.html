@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button onclick="fromJson()">fromJson()</button>
+
+    <script src="exceljs/exceljs.min.js"></script>
+    <script src="FileSaver.js/FileSaver.min.js"></script>
+
+    <script>
+      let data = [
+        { Name: "Bill Clinton", Index: 42000, Date: "2020-09-08T10:11:12" },
+        { Name: "GeorgeW Bush", Index: 43000, Date: "2020-09-08T13:11:12" },
+        { Name: "Barack Obama", Index: -44000, Date: "2020-09-08T14:11:12" },
+        { Name: "AAAAAAAA", Index: -45000, Date: "2020-09-08T15:11:12" },
+      ];
+
+      function fromJson() {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Sheet1");
+
+        worksheet.columns = [
+          { header: "Name", key: "Name", width: 32 },
+          { header: "Index", key: "Index", width: 10 },
+          { header: "Date", key: "Date", width: 20 },
+        ];
+
+        worksheet.getColumn("A").alignment = { horizontal: "center" };
+        worksheet.getColumn("B").alignment = { horizontal: "center" };
+        worksheet.getColumn("C").alignment = { horizontal: "center" };
+
+        // worksheet.model = data;
+        worksheet.addRows(data);
+
+        // export to file
+        workbook.xlsx.writeBuffer().then((buffer) => {
+          const fileType =
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+          const fileExtension = ".xlsx";
+          const blob = new Blob([buffer], { type: fileType });
+          saveAs(blob, "exceljs" + fileExtension);
+        });
+      }
+    </script>
+  </body>
+</html>
